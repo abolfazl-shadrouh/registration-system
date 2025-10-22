@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>پنل مدیریت ثبت‌نام‌ها</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "dayjs": "https://esm.sh/dayjs@1.11.13",
+      "dayjs/plugin/relativeTime": "https://esm.sh/dayjs@1.11.13/plugin/relativeTime"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="container">
+    <nav class="nav">
+      <div class="brand">پنل مدیریت ثبت‌نام‌ها</div>
+      <div class="nav-actions">
+        <a class="btn ghost" href="index.html">بازگشت به صفحهٔ اصلی</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container admin">
+    <p class="sub">مشاهده، جستجو و مدیریت رکوردهای ثبت‌نام</p>
+
+    <section class="toolbar">
+      <div class="filters">
+        <div class="field">
+          <label for="qNid">کد ملی</label>
+          <input id="qNid" placeholder="کد ملی را وارد کنید">
+        </div>
+        <div class="field">
+          <label for="qName">نام یا نام خانوادگی</label>
+          <input id="qName" placeholder="نام یا نام خانوادگی را وارد کنید">
+        </div>
+        <div class="field">
+          <label for="statusFilter">وضعیت</label>
+          <select id="statusFilter">
+            <option value="">تمامی</option>
+            <option>تأیید شده</option>
+            <option>در انتظار</option>
+            <option>رد شده</option>
+            <option>آرشیو</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="dateFrom">از تاریخ</label>
+          <input id="dateFrom" type="date">
+        </div>
+        <div class="field">
+          <label for="dateTo">تا تاریخ</label>
+          <input id="dateTo" type="date">
+        </div>
+        <button id="btnSearch" class="btn primary">جستجو</button>
+        <button id="btnExport" class="btn">صادر کردن CSV</button>
+      </div>
+    </section>
+
+    <section class="table-wrap">
+      <table class="table" id="resultsTable">
+        <thead>
+          <tr>
+            <th data-sort="id">شناسه</th>
+            <th data-sort="createdAt">تاریخ ثبت</th>
+            <th data-sort="firstName">نام</th>
+            <th data-sort="lastName">نام خانوادگی</th>
+            <th>نام پدر</th>
+            <th data-sort="nid">کد ملی</th>
+            <th>شماره موبایل</th>
+            <th>کد پستی</th>
+            <th>جنسیت</th>
+            <th>نشانی خلاصه</th>
+            <th data-sort="status">وضعیت</th>
+            <th>عملیات</th>
+          </tr>
+        </thead>
+        <tbody id="resultsBody"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <!-- template row actions -->
+  <template id="rowActionsTpl">
+    <div class="row-actions">
+      <button data-act="view" class="link">نمایش جزئیات</button>
+      <button data-act="edit" class="link">ویرایش</button>
+      <button data-act="delete" class="link danger">حذف</button>
+      <button data-act="pdf" class="link">صادر کردن PDF</button>
+    </div>
+  </template>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script type="module" src="admin.js"></script>
+</body>
+</html>

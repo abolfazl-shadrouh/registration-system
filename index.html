@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ثبت‌نام آموزشگاه آنلاین — سامانهٔ مدیریت ثبت‌نام</title>
+  <meta name="description" content="سامانهٔ ثبت‌نام آموزشگاه‌ها — فرم فارسی، ذخیرهٔ امن اطلاعات، پنل مدیریت با امکان جستجو بر اساس کد ملی و نام.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "jspdf": "https://esm.sh/jspdf@2.5.1",
+      "dayjs": "https://esm.sh/dayjs@1.11.13",
+      "dayjs/plugin/customParseFormat": "https://esm.sh/dayjs@1.11.13/plugin/customParseFormat"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="container">
+    <nav class="nav">
+      <div class="brand">سامانهٔ ثبت‌نام آموزشگاه‌ها</div>
+      <div class="nav-actions">
+        <a class="btn ghost" href="admin.html">مدیریت پرونده‌ها (ورود ادمین)</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <h1>سامانهٔ ثبت‌نام آموزشگاه‌ها</h1>
+      <p class="sub">ثبت‌نام آنلاین، امن و ساده برای هنرجویان و زبان‌آموزان — مناسب آموزشگاه‌ها و مؤسسات آموزشی</p>
+      <div class="cta">
+        <a href="#register" class="btn primary">ثبت‌نام هنرجو</a>
+        <a href="admin.html" class="btn">مدیریت پرونده‌ها (ورود ادمین)</a>
+      </div>
+    </section>
+
+    <section class="container note">
+      <p>برای راحتی شما و نظم بهتر روند پذیرش، این سامانه امکان ثبت‌نام آنلاین هنرجویان را با فرم استاندارد (نام، نام خانوادگی، نام پدر، کد ملی و …) فراهم می‌کند. اطلاعات ثبت‌شده به‌صورت امن ذخیره می‌شود و مدیر آموزشگاه می‌تواند از طریق صفحهٔ مدیریتی (admin.html) اسناد را جستجو، مشاهده و مدیریت کند.</p>
+    </section>
+
+    <section id="register" class="container form-card">
+      <h2>فرم ثبت‌نام</h2>
+      <form id="signupForm" novalidate>
+        <div class="grid">
+          <div class="field">
+            <label for="firstName">نام *</label>
+            <input id="firstName" name="firstName" placeholder="نام خود را وارد کنید" required>
+            <small class="error"></small>
+          </div>
+          <div class="field">
+            <label for="lastName">نام خانوادگی *</label>
+            <input id="lastName" name="lastName" placeholder="نام خانوادگی را وارد کنید" required>
+            <small class="error"></small>
+          </div>
+          <div class="field">
+            <label for="fatherName">نام پدر *</label>
+            <input id="fatherName" name="fatherName" placeholder="نام پدر را وارد کنید" required>
+            <small class="error"></small>
+          </div>
+          <div class="field">
+            <label for="nid">کد ملی *</label>
+            <input id="nid" name="nid" inputmode="numeric" placeholder="۱۲ رقمی بدون فاصله" required>
+            <small class="error"></small>
+          </div>
+          <div class="field">
+            <label for="postal">کد پستی *</label>
+            <input id="postal" name="postal" inputmode="numeric" placeholder="کد پستی ۱۰ رقمی" required>
+            <small class="error"></small>
+          </div>
+          <div class="field">
+            <label for="gender">جنسیت *</label>
+            <select id="gender" name="gender" required>
+              <option value="">انتخاب کنید</option>
+              <option>آقا</option>
+              <option>خانم</option>
+              <option>سایر / ترجیح می‌دهم نگویم</option>
+            </select>
+            <small class="error"></small>
+          </div>
+          <div class="field">
+            <label for="dob">تاریخ تولد</label>
+            <input id="dob" name="dob" placeholder="مثال: ۱۳۷۸/۰۱/۱۵ یا 1999-04-05">
+            <small class="error"></small>
+          </div>
+          <div class="field">
+            <label for="phone">شماره تماس ثابت</label>
+            <input id="phone" name="phone" placeholder="۰۲۱-xxxxxxx">
+            <small class="error"></small>
+          </div>
+          <div class="field">
+            <label for="mobile">شماره موبایل *</label>
+            <input id="mobile" name="mobile" inputmode="numeric" placeholder="09xxxxxxxxx" required>
+            <small class="error"></small>
+          </div>
+          <div class="field full">
+            <label for="address">نشانی دقیق *</label>
+            <textarea id="address" name="address" rows="3" placeholder="استان، شهر، خیابان، پلاک، واحد" required></textarea>
+            <small class="error"></small>
+          </div>
+          <div class="field">
+            <label for="email">ایمیل (اختیاری)</label>
+            <input id="email" name="email" type="email" placeholder="example@mail.com">
+            <small class="error"></small>
+          </div>
+          <div class="field full">
+            <label for="notes">توضیحات تکمیلی (اختیاری)</label>
+            <textarea id="notes" name="notes" rows="3" placeholder="سابقه، کلاس‌درخواستی، نیازهای ویژه و …"></textarea>
+          </div>
+          <div class="field full checkbox">
+            <input type="checkbox" id="consent" required>
+            <label for="consent">با <a href="privacy.html" target="_blank">قوانین حفظ حریم خصوصی</a> و شرایط ثبت‌نام موافقم.</label>
+            <small class="error"></small>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn primary">ارسال درخواست</button>
+          <button type="reset" class="btn">پاک کردن فرم</button>
+          <button type="button" id="downloadPdf" class="btn ghost">دانلود فرم (PDF)</button>
+        </div>
+
+        <div id="formStatus" class="status" role="status" aria-live="polite"></div>
+      </form>
+    </section>
+
+    <section class="container details">
+      <h3>توضیح کامل دربارهٔ سامانه</h3>
+      <ul class="features">
+        <li>ثبت‌نام سریع و بدون نیاز به کاغذ</li>
+        <li>ذخیرهٔ سازمان‌یافتهٔ اطلاعات شخصی و تماس</li>
+        <li>جستجوی سریع بر اساس کد ملی یا نام/نام خانوادگی</li>
+        <li>صفحهٔ مدیریتی با امکان مشاهده جزئیات، ویرایش و حذف رکوردها</li>
+        <li>خروجی CSV برای آرشیو یا انتقال به سیستم‌های دیگر</li>
+      </ul>
+      <p>رابط کاربری ساده، فارسی و راست‌چین است تا تجربهٔ کاربری شبیه به درگاه‌های دولتی (ساده و رسمی) فراهم شود.</p>
+    </section>
+  </main>
+
+  <footer class="container foot">
+    <small>© آموزشگاه — همهٔ حقوق محفوظ است.</small>
+  </footer>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
+
