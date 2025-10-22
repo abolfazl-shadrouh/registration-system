@@ -1,4 +1,4 @@
-📝 Registration Portal – Smart & Secure Sign-Up System
+### 📝 Registration Portal – Smart & Secure Sign-Up System
 
 [![GitHub stars](https://img.shields.io/github/stars/abolfazl-shadrouh/registration-system?style=social)](https://github.com/abolfazl-shadrouh/registration-system/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/abolfazl-shadrouh/registration-system?style=social)](https://github.com/abolfazl-shadrouh/registration-system/network)
